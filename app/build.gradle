@@ -1,14 +1,11 @@
-//apply plugin: 'com.android.application'
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.Potato-2020'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-//        applicationId "com.potato.myapplication"
+        applicationId "com.potato.myapplication"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -28,4 +25,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':mix')
 }
+
+task makeJar(type: Copy) {
+    delete 'build/libs/mix.jar'
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename('classes.jar', 'mix.jar')
+}
+makeJar.dependsOn(build)
