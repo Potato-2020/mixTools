@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 /**
  * create by Potato
  * create time
- * Description：找到带有@MixClass的类（目的：找到它并且找出需要插桩的代码）
+ * Description：插桩模板类，插桩内容从模板获取
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MixClass {
+public @interface MixTemplate {
     String value() default "";//备用
 }
